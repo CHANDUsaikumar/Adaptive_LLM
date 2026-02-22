@@ -1,0 +1,3 @@
+A curious robot discovers colors and learns to express emotions through painting, finding joy and creativity along the way.
+A durable, reusable water bottle with leak-proof lid, insulated walls, and an ergonomic design for everyday use and sustainable hydration.
+Attention in neural networks is a mechanism that lets the model focus on the most relevant parts of the input when making predictions, improving learning and performance.

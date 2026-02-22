@@ -1,0 +1,12 @@
+transformers
+torch
+pandas
+scikit-learn
+nltk
+rouge-score
+python-dotenv
+openai
+fastapi
+uvicorn
+jinja2
+python-multipart
