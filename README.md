@@ -1,110 +1,112 @@
-Adaptive Multi-LLM NLP System
+🧠 Adaptive Multi-LLM NLP System
 
-An intelligent Natural Language Processing system that dynamically routes user queries to the most suitable transformer model instead of relying on a single universal LLM.
+An intelligent Natural Language Processing system that dynamically selects the most suitable transformer model for a user’s request instead of relying on a single universal LLM.
 
-The application first identifies the intent of the user query, then assigns the task to a specialized model:
+The system first detects the intent of the input query, then routes it to a specialized model:
 
 BERT → sentiment classification
 
 T5 → text summarization
 
-FLAN-T5 → open-ended text generation
+FLAN-T5 → open-ended language generation
 
-The goal is to simulate a real production AI system that optimizes response quality and computational efficiency through model orchestration.
+The objective is to simulate a real production AI pipeline that improves response quality and computational efficiency using model orchestration.
 
-System Architecture
+📌 System Architecture
 
 Pipeline
 
 User Input → Intent Router → Model Selection → Model Inference → Response
 
-The router acts as a controller that detects the NLP task and invokes the most appropriate model handler.
+The router acts as a controller that determines the NLP task and invokes the appropriate model handler.
 
-Models Used
-Model	Type	Purpose
-DistilBERT	Encoder	Sentiment classification
-T5-Small	Encoder-Decoder	Summarization
-FLAN-T5	Instruction-tuned LLM	Open-ended generation
-Evaluation Methodology
+🤖 Models Used
+Model	Architecture	Purpose
+DistilBERT	Encoder	Sentiment Classification
+T5-Small	Encoder-Decoder	Text Summarization
+FLAN-T5	Instruction-tuned LLM	Open-ended Text Generation
+📊 Evaluation Methodology
 
-Instead of assuming model suitability, each model was evaluated on a held-out test dataset using task-specific metrics.
+Instead of assuming which model works best, each model was evaluated on a held-out dataset using task-specific evaluation metrics.
 
-Different NLP tasks require different evaluation criteria:
-
-Classification → F1 Score
-
-Summarization → ROUGE
-
-Generation → BLEU
-
-Evaluation Results
-Sentiment Classification (BERT)
+Task Type	Evaluation Metric	Reason
+Classification	F1 Score	Balances precision & recall
+Summarization	ROUGE	Measures information retention
+Generation	BLEU	Measures lexical similarity baseline
+📈 Evaluation Results
+Sentiment Classification — BERT
 Metric	Score
 Accuracy	1.00
 Macro F1 Score	1.00
 Dataset Size	5 samples
 
-The dataset is intentionally small and controlled to verify correct task routing and classification behaviour.
+The dataset is intentionally small and controlled to verify correct routing and classification behavior.
 
-Summarization (T5)
+Text Summarization — T5
 Metric	Score
 ROUGE-1 (F1)	0.304
 ROUGE-L (F1)	0.335
 Samples	3 articles
 
 Interpretation:
-The model preserves ~30–35% of important information from the reference summaries without fine-tuning, which is expected for a small general-purpose transformer.
+The model retains approximately 30–35% of key information from human reference summaries without fine-tuning, which is expected for a small general-purpose transformer.
 
-Text Generation (FLAN-T5)
+Text Generation — FLAN-T5
 Metric	Score
 BLEU Score	0.0109
 Prompts	3
 
-Important Note:
-BLEU measures exact n-gram overlap and tends to underestimate performance for open-ended generation.
-FLAN-T5 produces semantically correct responses with lexical variation, resulting in a low BLEU score despite good qualitative output.
+Note:
+BLEU relies on exact n-gram overlap and underestimates open-ended generation quality.
+FLAN-T5 produces semantically correct responses with lexical variation, resulting in a low BLEU score despite good qualitative performance.
 
-Model Selection Justification
+🧩 Model Selection Justification
 
-The routing decision is data-driven:
+The routing logic is data-driven based on empirical evaluation.
 
-Task	Selected Model	Reason
+Task	Selected Model	Justification
 Sentiment Analysis	BERT	Highest classification reliability (F1)
 Summarization	T5	Better information retention (ROUGE)
-Open-ended Queries	FLAN-T5	Best natural language reasoning & generation
-Features
+Open-ended Queries	FLAN-T5	Best reasoning & natural language generation
+✨ Features
 
-Dynamic task detection (intent-based routing)
+Intent-based query routing
 
 Multi-model orchestration
 
-Local inference (no external API dependency)
+Fully local inference (no external API dependency)
 
 Quantitative evaluation using standard NLP metrics
 
-Web interface using FastAPI
+FastAPI web interface
 
-Running the Project
-1. Install dependencies
+🚀 Running the Project
+1. Clone repository
+git clone <your-repo-link>
+cd adaptive_multi_llm_system
+2. Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+3. Install dependencies
 pip install -r requirements.txt
-2. Start the server
+4. Start the server
 PYTHONPATH=$(pwd) python -m uvicorn adaptive_multi_llm_system.web.app:app
-3. Open in browser
+5. Open in browser
 http://127.0.0.1:8000
-Example Queries
+🧪 Example Queries
 
 Sentiment
 
-I regret buying this phone, the battery is terrible.
+I regret buying this phone. The battery drains very fast.
 
 Summarization
 
-<insert long paragraph>
+Artificial intelligence is rapidly transforming industries such as healthcare, finance, and transportation. It enables automation and predictive analytics while also raising ethical concerns about privacy and employment.
 
 Generation
 
 Explain black holes to a 10 year old.
-Technologies Used
+🛠 Technologies Used
 
 Python
 
@@ -116,10 +118,10 @@ FastAPI
 
 Scikit-learn
 
-ROUGE Score
-
 NLTK
 
-Key Learning Outcome
+ROUGE-Score
 
-This project demonstrates that modern AI systems are not built around a single model but around intelligent orchestration of multiple specialized models, with decisions justified through empirical evaluation.
+🎯 Key Learning Outcome
+
+This project demonstrates that modern AI systems are not built around a single model, but around intelligent orchestration of specialized models, where architectural decisions are justified using empirical evaluation metrics.
